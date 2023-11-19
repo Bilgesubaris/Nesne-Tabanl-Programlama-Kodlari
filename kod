@@ -1,0 +1,58 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int satirSayisi = 8;
+        int sutunSayisi = 8;
+
+        int[,] dizi = {
+            {1, 2, 3, 4, 5, 6, 7, 8},
+            {10, 11, 12, 1, 2, 3, 4, 5},
+            {1, 7, 9, 8, 4, 6, 3, 11},
+            {5, 75, 3, 6, 8, 4, 2, 1},
+            {56, 7, 9, 45, 35, 24, 72, 12},
+            {6, 3, 63, 86, 24, 68, 74, 22},
+            {99, 35, 23, 23, 67, 21, 87, 76},
+            {2, 5, 76, 35, 9, 47, 35, 24},
+
+        };
+        int[,] yenidizi = new int[8, 8];
+        for (int i = 0; i < satirSayisi; i++)
+        {
+            for (int j = 0; j < sutunSayisi; j++)
+            {
+                if (i == 0 && j == 0)
+                    continue;
+                else if (i == 0 && j != 0)
+                {
+                    dizi[i, j] = yenidizi[i, j] - yenidizi[i, j - 1];
+                }
+                else if (i != 0 && j == 0)
+                {
+                    dizi[i, j] = yenidizi[i, j];
+                }
+                else
+                {
+                    dizi[i, j] = yenidizi[i, j] - yenidizi[i, j - 1];
+                }
+            }
+            
+        }
+        for (int i = 0; i < satirSayisi; i++)
+        {
+            for (int j = 0; j < sutunSayisi; j++)
+            {
+                Console.Write(dizi[i, j] + " ");
+            }
+            Console.WriteLine();
+        }
+
+    }
+
+}
+
+
+
+
