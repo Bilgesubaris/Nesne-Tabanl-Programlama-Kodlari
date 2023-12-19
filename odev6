@@ -75,6 +75,7 @@ class ZorOyun : Oyun
      if (zorluk > 2)
         {
             Console.WriteLine("0-2 arasında değer giriniz.");
+           
         }
             
     }
@@ -87,6 +88,12 @@ class ZorOyun : Oyun
 
             Console.WriteLine("Zorluk derecesi giriniz: ");
             int a = Convert.ToInt32(Console.ReadLine());
+        if (a > 2)
+        {
+            Console.WriteLine("0-2 arasında değer giriniz.");
+        }
+        else
+        {
             ZorOyun zorOyun = new ZorOyun();
             zorOyun.Seviye(a);
 
@@ -97,4 +104,6 @@ class ZorOyun : Oyun
             oyun.MatrisiYazdir();
 
             Console.ReadLine();
+        }
+           
         } }
