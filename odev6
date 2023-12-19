@@ -1,8 +1,7 @@
 using System;
-
 class Oyun
 {
-    private int[,] dizi;
+    public int[,] dizi;
 
     public Oyun()
     {
@@ -10,7 +9,7 @@ class Oyun
         dizi = new int[4, 10];
     }
 
-    public void Yazdır()
+    public void Doldur()
     {
         Random random = new Random();
 
@@ -22,46 +21,8 @@ class Oyun
                 dizi[i, j] = random.Next(2);
             }
         }
-    }
-    class ZorOyun:Oyun
-    {
-        public  void Seviye(int zorluk)
-        {
-            Yazdır();
-            if (zorluk == 1)
-            {
-                
-                for (int i = 0; i < dizi.GetLength(0); i++)
-                {
-                    for (int j = 0; j < dizi.GetLength(1) - 1; j++)
-                    {
-                        if (dizi[i, j] == 0 && dizi[i, j + 1] == 0)
-                        {
-                            
-                            dizi[i, j + 1] = 1;
-                        }
-                    }
-                }
-            }
-            else if (zorluk == 2)
-            {
-                
-                for (int i = 0; i < dizi.GetLength(0); i++)
-                {
-                    for (int j = 0; j < dizi.GetLength(1) - 2; j++)
-                    {
-                        if (dizi[i, j] == 0 && dizi[i, j + 1] == 0 && dizi[i, j + 2] == 0)
-                        {
-                         
-                            dizi[i, j + 2] = 1;
-                        }
-                    }
-                }
-            }
 
-        }
     }
-
     public void MatrisiYazdir()
     {
         for (int i = 0; i < dizi.GetLength(0); i++)
@@ -75,23 +36,65 @@ class Oyun
         }
     }
 }
-
-class Program
+class ZorOyun : Oyun
 {
-    static void Main()
+    public void Seviye(int zorluk)
     {
-        
-        Console.WriteLine("Zorluk derecesi giriniz: ");
-        int a = Convert.ToInt32(Console.ReadLine());
-        ZorOyun zorOyun = new ZorOyun(a);
+        Doldur();
+        if (zorluk == 0)
+        {
 
+            for (int i = 0; i < dizi.GetLength(0); i++)
+            {
+                for (int j = 0; j < dizi.GetLength(1) - 1; j++)
+                {
+                    if (dizi[i, j] == 0 && dizi[i, j + 1] == 0)
+                    {
 
-        Oyun oyun = new Oyun();
+                        dizi[i, j + 1] = 1;
+                    }
+                }
+            }
+        }
+        else if (zorluk == 1)
+        {
 
-        oyun.Yazdır();
-        Console.WriteLine("Oyun Matrisi:");
-        oyun.MatrisiYazdir();
+            for (int i = 0; i < dizi.GetLength(0); i++)
+            {
+                for (int j = 0; j < dizi.GetLength(1) - 2; j++)
+                {
+                    if (dizi[i, j] == 0 && dizi[i, j + 1] == 0 && dizi[i, j + 2] == 0)
+                    {
 
-        Console.ReadLine();
+                        dizi[i, j + 2] = 1;
+                    }
+                }
+            }
+
+        }
+     if (zorluk > 2)
+        {
+            Console.WriteLine("0-2 arasında değer giriniz.");
+        }
+            
     }
-}
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+
+            Console.WriteLine("Zorluk derecesi giriniz: ");
+            int a = Convert.ToInt32(Console.ReadLine());
+            ZorOyun zorOyun = new ZorOyun();
+            zorOyun.Seviye(a);
+
+            Oyun oyun = new Oyun();
+
+            oyun.Doldur();
+            Console.WriteLine("Oyun Matrisi:");
+            oyun.MatrisiYazdir();
+
+            Console.ReadLine();
+        } }
